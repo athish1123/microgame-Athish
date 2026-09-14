@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bq6sggntskurd"]
+
+[ext_resource type="Script" uid="uid://dpdv84vs06fl2" path="res://Fishing-MiniGame/Scripts/fishing_reel.gd" id="1_awhs2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(27, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0u6y"]
+radius = 4.0
+
+[node name="FishingReel" type="Node2D" unique_id=1295974443]
+script = ExtResource("1_awhs2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1620826096]
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1799203195]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1944328794]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Rod" type="Area2D" parent="." unique_id=1159744336]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rod" unique_id=1208282588]
+position = Vector2(10.5, 0)
+shape = SubResource("RectangleShape2D_yf5fn")
+debug_color = Color(0.9796211, 0, 0.39041236, 0.41960785)
+
+[node name="Reel" type="Area2D" parent="." unique_id=1378758523]
+position = Vector2(22, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reel" unique_id=1743157420]
+shape = SubResource("CircleShape2D_d0u6y")
+debug_color = Color(3.080368e-06, 0.6437659, 0.29969487, 0.41960785)
+
+[connection signal="area_entered" from="Reel" to="." method="_on_reel_area_entered"]
