@@ -2,6 +2,8 @@ class_name SaveDataManager extends Node
 
 @onready var save_data : SaveData = SaveData.new()
 
+var enabled : bool = false
+
 func _ready() -> void:
 	# stop game from immediately closing
 	get_tree().auto_accept_quit = false
@@ -10,6 +12,8 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what != Node.NOTIFICATION_WM_CLOSE_REQUEST:
 		return
+	if !enabled:
+		get_tree().quit()
 	# save data before closing
 	GameSaver.save_data_to_file(save_data)
 	# close normally

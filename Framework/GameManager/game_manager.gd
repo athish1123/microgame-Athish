@@ -57,12 +57,13 @@ func pause_game() -> void:
 
 func start_microgame() -> void:
 	_switch_to_next_microgame()
+	save_data_manager.enabled = true
 	save_data_manager.save_data.clear()
 
 
 func switch_scene_to_packed(scene : PackedScene) -> void:
 	microgame_queue.clear()
-	
+	save_data_manager.enabled = false
 	if get_tree().paused == false:
 		pause_game()
 		await fade_to_black.do_tween()
